@@ -1,0 +1,29 @@
+.modal__content_type_image {
+  padding: 0;
+  background-color: #fff;
+}
+
+.modal__image {
+  width: 100%;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+}
+
+.modal__captions {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-left: 32px;
+}
+
+.modal__card-name {
+  margin: 0;
+  padding-bottom: 12px;
+  padding-top: 20px;
+}
+
+.modal__card-weather {
+  margin: 0;
+  padding-bottom: 32px;
+}

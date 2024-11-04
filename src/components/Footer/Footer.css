@@ -1,0 +1,20 @@
+.footer__date-copyright {
+  margin: 0;
+  margin-left: auto;
+}
+
+.footer__text {
+  margin: 0;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  padding-right: 0;
+  padding-bottom: 24px;
+  padding-top: 85px;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}

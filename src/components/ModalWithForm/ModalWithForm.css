@@ -1,0 +1,130 @@
+.modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0000003d;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  visibility: hidden;
+}
+
+.modal_opened {
+  visibility: visible;
+}
+
+.modal__content {
+  position: relative;
+  padding: 28px 28px 36px;
+  background-color: #fff;
+  box-sizing: border-box;
+  max-width: 496px;
+  width: 100%;
+  border-radius: 20px;
+  min-height: 330px;
+}
+
+.modal__title {
+  font-weight: 700;
+  line-height: 20px;
+  font-family: "Cabinet Grotesk";
+  margin: 0;
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+.modal__close-button {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  border: none;
+  background-color: none;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.modal__label {
+  line-height: 20px;
+  font-size: 16px;
+  font-family: "Cabinet Grotesk";
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+
+.modal__label_type_radio {
+  margin-bottom: 8px;
+}
+
+.modal__label_type_radio_margin_fix {
+  margin-bottom: 0;
+}
+
+.modal__label_type_radio_fix {
+  padding-top: 12px;
+}
+
+.modal__label_type_radio_fixx {
+  padding-bottom: 24px;
+}
+
+.modal__input {
+  display: block;
+  border: none;
+  border-bottom: 1px solid #000;
+  margin-bottom: 4px;
+  padding-left: 0;
+  margin: 0;
+  padding-top: 8px;
+  width: 440px;
+}
+
+.modal__input-radio {
+  margin-right: 5px;
+}
+
+.modal__input-radio_fix {
+  padding-top: 12px;
+}
+
+.modal__fieldset {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: none;
+}
+
+.modal__legend {
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk";
+}
+
+.modal__submit-button {
+  font-family: "Cabinet Grotesk";
+  font-weight: 700;
+  color: #fff;
+  border-radius: 4px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #000;
+  width: 124px;
+}
+
+.modal__submit-button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal__submit-button_disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+}
