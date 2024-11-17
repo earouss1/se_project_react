@@ -1,0 +1,58 @@
+.header__switch {
+  display: flex;
+  position: relative;
+}
+
+.header__switch_input {
+  border-radius: 20px;
+  border: 2px solid #000;
+  width: 56px;
+  height: 28px;
+  appearance: none;
+}
+
+.header__switch_slider {
+  position: absolute;
+  text-align: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 20px;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.header__switch_active {
+  font-size: 14px;
+  line-height: 17px;
+  font-family: Cabinet Grotesk;
+  align-items: center;
+  font-weight: 700;
+  color: #fff;
+}
+
+.header__temp-F {
+  margin: 0;
+  position: absolute;
+  top: 9px;
+  left: 15px;
+  color: #fff;
+}
+
+.header__temp-C {
+  margin: 0;
+  position: absolute;
+  top: 9px;
+  right: 13px;
+  color: #fff;
+}
+
+.header__switch_slider-F {
+  top: 3px;
+  left: 5px;
+}
+
+.header__switch_slider-C {
+  top: 3px;
+  left: 32px;
+}
