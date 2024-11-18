@@ -1,7 +1,27 @@
+import { useState } from "react";
 import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const AddItemModal = ({ onAddItem, closeActiveModal, activeModal, isOpen }) => {
+  const [name, setName] = useState("");
+
+  const handleChangeName = (event) => {
+    console.log(event);
+    setName();
+  };
+
+  const [url, setUrl] = useState("");
+
+  const handleChangeImageUrl = (event) => {
+    console.log(event);
+    setUrl();
+  };
+
+  const handleAddItemSubmit = (event) => {
+    event.preventDefault();
+    onAddItem({ name, url });
+  };
+
   return (
     <ModalWithForm
       isOpen={isOpen}
@@ -9,24 +29,34 @@ const AddItemModal = ({ onAddItem, closeActiveModal, activeModal, isOpen }) => {
       title={"New garment"}
       activeModal={activeModal}
       onClose={closeActiveModal}
-      onSubmit={onAddItem}
+      onSubmit={handleAddItemSubmit}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
         <input
+          name="name"
+          minLength="1"
+          maxLength="30"
           type="text"
           className="modal__input"
           id="name"
           placeholder="Name"
+          value={name}
+          onChange={handleChangeName}
         />
       </label>
       <label htmlFor="imageUrl" className="modal__label">
         Image{" "}
         <input
-          type="text"
+          type="url"
           className="modal__input"
           id="imageUrl"
           placeholder="Image Url"
+          name="url"
+          minLength="1"
+          maxLength="30"
+          value={url}
+          onChange={handleChangeImageUrl}
         />
       </label>
       <fieldset className="modal__fieldset">

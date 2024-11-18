@@ -41,3 +41,8 @@
   height: 40px;
   width: 40px;
 }
+
+.header__link {
+  text-decoration: none;
+  color: #000;
+}

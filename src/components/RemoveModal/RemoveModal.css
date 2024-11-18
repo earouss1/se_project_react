@@ -1,0 +1,55 @@
+.modal .modal__remove {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  width: 670px;
+  background-color: #fff;
+  padding: 60px 151px;
+}
+
+.modal__content .modal__content_remove {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 670px;
+  width: 100%;
+}
+
+.modal__remove-warning {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal__remove-warning-text {
+  margin: 0;
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  padding-top: 50px;
+}
+
+.modal__remove-buttons {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.modal__remove-button-delete {
+  margin-bottom: 24px;
+  margin-top: 40px;
+  color: #ff4d00;
+  border: none;
+}
+
+.modal__remove-button-cancel {
+  color: #000;
+  border: none;
+}
