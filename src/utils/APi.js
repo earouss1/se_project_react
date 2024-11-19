@@ -17,7 +17,7 @@ function getItems() {
 }
 
 function addNewItems({ name, imageUrl, weather }) {
-  const url = `${this._baseUrl}/items`;
+  const url = `${baseUrl}/items`;
   const options = {
     method: "POST",
     headers: {
@@ -33,7 +33,7 @@ function addNewItems({ name, imageUrl, weather }) {
 }
 
 function deleteItems(_id) {
-  const url = `${this._baseUrl}/items/${_id}`;
+  const url = `${baseUrl}/items/${_id}`;
   const options = {
     method: "DELETE",
     headers: {

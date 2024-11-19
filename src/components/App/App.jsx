@@ -26,7 +26,7 @@ function App() {
     city: "",
   });
   const [activeModal, setActiveModal] = useState("");
-  const [removeModal, setRemoveModal] = useState("false");
+  //const [removeModal, setRemoveModal] = useState("false");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
@@ -34,11 +34,11 @@ function App() {
 
   const openRemoveModal = (card) => {
     setSelectedCard(card);
-    setRemoveModal("true");
+    setActiveModal("remove-item");
   };
 
   const closeRemoveModal = () => {
-    setRemoveModal("false");
+    setActiveModal("remove-item");
   };
 
   const handleAddClick = () => {
@@ -85,8 +85,8 @@ function App() {
       deleteItems(selectedCard._id)
         .then(() => {
           setClothingItems((previousItems) => {
-            previousItems.filter((item) => {
-              item._id !== selectedCard._id;
+            return previousItems.filter((item) => {
+              return item._id !== selectedCard._id;
             });
           });
 
@@ -189,8 +189,8 @@ function App() {
         )}
 
         <RemoveModal
-          activeModal={activeModal}
-          onClose={closeRemoveModal}
+          //activeModal={activeModal}
+          onClose={closeActiveModal /*closeRemoveModal*/}
           onConfirm={handleConfirmDelete}
           isOpen={activeModal === "remove-item"}
         />

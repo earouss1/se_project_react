@@ -6,7 +6,7 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 function Profile({ onCardClick, clothingItems, handleAddClick }) {
   return (
     <div className="profile">
-      <section className="profile__sideber">
+      <section className="profile__sidebar">
         <SideBar />
       </section>
       <section className="profile__clotching_items">

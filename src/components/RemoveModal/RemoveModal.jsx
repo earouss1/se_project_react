@@ -16,24 +16,24 @@ function RemoveModal({ isOpen, onClose, onConfirm }) {
         </button>
         <div className="modal__remove-warning">
           <p className="modal__remove-warning-text">
-            You are about to delete this item.
+            Are you are sure you want to delete this item?
           </p>
           <p className="modal__remove-warning-text">
-            Are you want to delete this item. This action can't be undone!
+            This action is irreversible.
           </p>
         </div>
         <div className="modal__remove-buttons">
           <button
             className="modal__remove-button-delete"
-            onClose={confirmDelete}
-            type="button"
+            onClick={confirmDelete}
+            type="submit"
           >
             Yes, Delete
           </button>
           <button
             className="modal__remove-button-cancel"
-            onClose={onClose}
-            type="button"
+            onClick={onClose}
+            type="submit"
           >
             No, Cancel
           </button>

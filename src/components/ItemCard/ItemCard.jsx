@@ -14,7 +14,7 @@ function ItemCard({ item, onCardClick }) {
       </div>
       <img
         onClick={handleCardPreview}
-        src={item.link}
+        src={item.imageUrl}
         alt={item.name}
         className="card__image"
       />
