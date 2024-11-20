@@ -6,21 +6,27 @@
   border: 1px solid rgba(0, 0, 0, 0.3);
   width: 670px;
   background-color: #fff;
-  padding: 60px 151px;
+  padding-left: 123px;
+  padding-right: 122px;
+  padding-bottom: 60px;
 }
 
-.modal__content .modal__content_remove {
+.modal__content_remove {
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 670px;
   width: 100%;
+  box-sizing: border-box;
+  min-height: 280px;
 }
 
 .modal__remove-warning {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .modal__remove-warning-text {
@@ -29,7 +35,11 @@
   font-size: 20px;
   line-height: 24px;
   font-weight: 700;
-  padding-top: 50px;
+  padding-top: 32px;
+}
+
+.modal__remove_warning-text_fix {
+  padding: 0;
 }
 
 .modal__remove-buttons {
@@ -47,9 +57,13 @@
   margin-top: 40px;
   color: #ff4d00;
   border: none;
+  padding: 0;
+  background-color: transparent;
 }
 
 .modal__remove-button-cancel {
   color: #000;
   border: none;
+  padding: 0;
+  background-color: transparent;
 }

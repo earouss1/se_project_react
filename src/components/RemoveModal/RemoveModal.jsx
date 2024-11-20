@@ -18,7 +18,7 @@ function RemoveModal({ isOpen, onClose, onConfirm }) {
           <p className="modal__remove-warning-text">
             Are you are sure you want to delete this item?
           </p>
-          <p className="modal__remove-warning-text">
+          <p className="modal__remove-warning-text modal__remove_warning-text_fix">
             This action is irreversible.
           </p>
         </div>
@@ -28,7 +28,7 @@ function RemoveModal({ isOpen, onClose, onConfirm }) {
             onClick={confirmDelete}
             type="submit"
           >
-            Yes, Delete
+            Yes, delete item
           </button>
           <button
             className="modal__remove-button-cancel"

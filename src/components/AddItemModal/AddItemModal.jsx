@@ -7,19 +7,26 @@ const AddItemModal = ({ onAddItem, closeActiveModal, activeModal, isOpen }) => {
 
   const handleChangeName = (event) => {
     console.log(event);
-    setName();
+    setName(event.target.value);
   };
 
   const [url, setUrl] = useState("");
 
   const handleChangeImageUrl = (event) => {
     console.log(event);
-    setUrl();
+    setUrl(event.target.value);
+  };
+
+  const [weather, setWeather] = useState("");
+
+  const handleWeatherTypeChange = (event) => {
+    console.log(event);
+    setWeather(event.target.value);
   };
 
   const handleAddItemSubmit = (event) => {
     event.preventDefault();
-    onAddItem({ name, url });
+    onAddItem({ name, url, weather });
   };
 
   return (
@@ -70,6 +77,8 @@ const AddItemModal = ({ onAddItem, closeActiveModal, activeModal, isOpen }) => {
             name="radbtn"
             id="hot"
             className="modal__input-radio"
+            value="hot"
+            onChange={handleWeatherTypeChange}
           />
           Hot
         </label>
@@ -79,6 +88,8 @@ const AddItemModal = ({ onAddItem, closeActiveModal, activeModal, isOpen }) => {
             name="radbtn"
             id="warm"
             className="modal__input-radio"
+            value="warm"
+            onChange={handleWeatherTypeChange}
           />
           Warm
         </label>
@@ -91,6 +102,8 @@ const AddItemModal = ({ onAddItem, closeActiveModal, activeModal, isOpen }) => {
             name="radbtn"
             id="cold"
             className="modal__input-radio"
+            value="cold"
+            onChange={handleWeatherTypeChange}
           />
           Cold
         </label>

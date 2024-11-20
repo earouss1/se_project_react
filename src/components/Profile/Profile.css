@@ -1,6 +1,7 @@
 .profile {
   display: flex;
-  gap: 25px;
+  gap: 116px;
+  margin-top: 135;
 }
 
 .profile__clotching_items {

@@ -7,13 +7,18 @@
   box-sizing: border-box;
   flex-direction: column;
   width: 100%;
+  border-radius: 20px;
+  position: relative;
+}
+
+.modal__close-button {
+  background-color: transparent;
 }
 
 .modal__image {
   width: 100%;
-  border-top-right-radius: 16px;
-  border-top-left-radius: 16px;
   object-fit: contain;
+  border-radius: 20px;
 }
 
 .modal__captions {
@@ -47,11 +52,14 @@
   font-weight: 700;
   line-height: 24px;
   color: #ff4d00;
-  background-color: none;
+  background-color: transparent;
   margin-right: 32px;
   margin-bottom: 25px;
+  margin-top: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
+  align-items: flex-end;
+  position: absolute;
+  bottom: 40px;
+  right: 5px;
 }

@@ -66,6 +66,7 @@ function App() {
 
   const onAddItem = (values) => {
     console.log(values);
+    handleAddItemSubmit(values);
   };
 
   const handleAddItemSubmit = (item) => {
