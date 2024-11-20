@@ -10,11 +10,11 @@ const AddItemModal = ({ onAddItem, closeActiveModal, activeModal, isOpen }) => {
     setName(event.target.value);
   };
 
-  const [url, setUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleChangeImageUrl = (event) => {
     console.log(event);
-    setUrl(event.target.value);
+    setImageUrl(event.target.value);
   };
 
   const [weather, setWeather] = useState("");
@@ -26,7 +26,7 @@ const AddItemModal = ({ onAddItem, closeActiveModal, activeModal, isOpen }) => {
 
   const handleAddItemSubmit = (event) => {
     event.preventDefault();
-    onAddItem({ name, url, weather });
+    onAddItem({ name, imageUrl, weather });
   };
 
   return (
@@ -61,8 +61,8 @@ const AddItemModal = ({ onAddItem, closeActiveModal, activeModal, isOpen }) => {
           placeholder="Image Url"
           name="url"
           minLength="1"
-          maxLength="30"
-          value={url}
+          maxLength="2000"
+          value={imageUrl}
           onChange={handleChangeImageUrl}
         />
       </label>
