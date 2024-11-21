@@ -1,6 +1,6 @@
 import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import useForm from "../UseForm/UseForm";
+import UseForm from "../UseForm/UseForm";
 
 const AddItemModal = ({
   onAddItem,
@@ -15,7 +15,7 @@ const AddItemModal = ({
     weather: "",
   };
 
-  const { values, handleChange, setValues } = useForm({ defaultValues });
+  const { values, handleChange, setValues } = UseForm({ defaultValues });
   console.log({ values, handleChange, setValues });
 
   const handleAddItemSubmit = (event) => {
