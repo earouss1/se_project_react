@@ -1,6 +1,6 @@
 import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import UseForm from "../UseForm/UseForm";
+import UseForm from "../../utils/UseForm";
 
 const AddItemModal = ({
   onAddItem,
