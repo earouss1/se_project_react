@@ -55,16 +55,6 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sweatshirt.png?etag=008a9674757bea2e0bdb31242e364be0"
     },
     {
-      "name": "hot",
-      "weather": "hot",
-      "_id": 16
-    },
-    {
-      "name": "Hat",
-      "weather": "hot",
-      "_id": 17
-    },
-    {
       "name": "Hat",
       "imageUrl": "https://images.unsplash.com/photo-1633963647341-f5efadf01e1e?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "weather": "cold",

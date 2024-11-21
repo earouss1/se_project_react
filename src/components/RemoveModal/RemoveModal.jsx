@@ -2,7 +2,7 @@ import closeButton from "../../images/closebtn.png";
 import React from "react";
 import "./RemoveModal.css";
 
-function RemoveModal({ isOpen, onClose, onConfirm }) {
+function RemoveModal({ isOpen, onClose, onConfirm, isLoading }) {
   const confirmDelete = () => {
     console.log("Delete Confirmed");
     onConfirm();
@@ -27,6 +27,7 @@ function RemoveModal({ isOpen, onClose, onConfirm }) {
             className="modal__remove-button-delete"
             onClick={confirmDelete}
             type="submit"
+            buttontext={isLoading ? "Deleting..." : "Delete"}
           >
             Yes, delete item
           </button>

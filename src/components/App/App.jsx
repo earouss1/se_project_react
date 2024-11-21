@@ -9,6 +9,7 @@ import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/itemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import RemoveModal from "../RemoveModal/RemoveModal";
+import useForm from "../UseForm/UseForm";
 // import API and weatherUpdate
 //import APi from "../../utils/APi";
 import { getItems, deleteItems, addNewItems } from "../../utils/APi";
@@ -31,6 +32,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [confirmDelete, setConfirmDelete] = useState("false");
+  const [isLoading, setIsLoading] = useState(false);
 
   const openRemoveModal = (card) => {
     setSelectedCard(card);
@@ -64,20 +66,23 @@ function App() {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
   };
 
-  const onAddItem = (values) => {
-    console.log(values);
-    handleAddItemSubmit(values);
-  };
+  // const onAddItem = (values) => {
+  //   console.log(values);
+  //   handleAddItemSubmit(values);
+  // };
 
   const handleAddItemSubmit = (item) => {
     addNewItems(item)
       .then((newItem) => {
         console.log("clothingItems then update", clothingItems);
         setClothingItems([newItem, ...clothingItems]);
-        setActiveModal(null);
+        closeActiveModal();
       })
       .catch((error) => {
         console.error("Clothes failed to be added! What to wear?", error);
+      })
+      .finally(() => {
+        setIsLoading(true);
       });
   };
 
@@ -100,6 +105,9 @@ function App() {
             "OOps Nothing to wear! This clothe has been deleted.",
             error
           );
+        })
+        .finally(() => {
+          setIsLoading(true);
         });
     }
   };
@@ -135,6 +143,32 @@ function App() {
         console.error("Clothes are missing! What to wear?", error);
       });
   }, []);
+
+  // use effect for close modal (escape)
+
+  useEffect(() => {
+    if (!activeModal) return;
+    const handleEscClose = (event) => {
+      if (event.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    const handleOverlay = (event) => {
+      if (event.target.classList.contains("modal_opened")) {
+        const currentClickModal = event.target;
+        closeActiveModal(currentClickModal);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+    document.addEventListener("mousedown", handleOverlay);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+      document.addEventListener("mousedown", handleOverlay);
+    };
+  }, [activeModal]);
 
   //console.log currentTemperatureUnit to have it in the app also
   console.log(currentTemperatureUnit);
@@ -176,7 +210,7 @@ function App() {
           <AddItemModal
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "add-garment"}
-            onAddItem={onAddItem}
+            //onAddItem={onAddItem}
             handleAddItemSubmit={handleAddItemSubmit}
           />
         )}

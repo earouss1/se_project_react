@@ -11,7 +11,7 @@
   left: 125px;
   border-radius: 4px;
   cursor: pointer;
-  background-color: #fff;
+  background-color: transparent;
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   line-height: 20px;
   font-size: 16px;
@@ -19,6 +19,7 @@
   width: 73px;
   height: 24px;
   margin: 0;
+  padding: 0;
 }
 
 .card__image {

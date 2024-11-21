@@ -7,7 +7,7 @@ const handleResponse = (res) => {
   return Promise.reject(`Error: ${res.status}`);
 };
 
-const handleRequest = (url, options) => {
+export const handleRequest = (url, options) => {
   return fetch(url, options).then(handleResponse);
 };
 
