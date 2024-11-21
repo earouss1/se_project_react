@@ -9,7 +9,6 @@ import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/itemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import RemoveModal from "../RemoveModal/RemoveModal";
-import useForm from "../UseForm/UseForm";
 // import API and weatherUpdate
 //import APi from "../../utils/APi";
 import { getItems, deleteItems, addNewItems } from "../../utils/APi";
@@ -66,10 +65,10 @@ function App() {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
   };
 
-  // const onAddItem = (values) => {
-  //   console.log(values);
-  //   handleAddItemSubmit(values);
-  // };
+  const onAddItem = (values) => {
+    console.log(values);
+    handleAddItemSubmit(values);
+  };
 
   const handleAddItemSubmit = (item) => {
     addNewItems(item)
@@ -210,7 +209,7 @@ function App() {
           <AddItemModal
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "add-garment"}
-            //onAddItem={onAddItem}
+            onAddItem={onAddItem}
             handleAddItemSubmit={handleAddItemSubmit}
           />
         )}

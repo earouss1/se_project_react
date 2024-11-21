@@ -59,6 +59,27 @@
       "imageUrl": "https://images.unsplash.com/photo-1633963647341-f5efadf01e1e?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "weather": "cold",
       "_id": 18
+    },
+    {
+      "_id": 19
+    },
+    {
+      "_id": 20
+    },
+    {
+      "_id": 21
+    },
+    {
+      "_id": 22
+    },
+    {
+      "_id": 23
+    },
+    {
+      "name": "hat",
+      "imageUrl": "https://media.istockphoto.com/id/492274456/photo/knit-hat.webp?a=1&b=1&s=612x612&w=0&k=20&c=gqmnBog0GoQHYC43VOlpBJetLL0SBeOlLuTFfKeCQWk=",
+      "weather": "cold",
+      "_id": 24
     }
   ]
 }
