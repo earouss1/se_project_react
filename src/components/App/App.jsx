@@ -67,25 +67,38 @@ function App() {
 
   const onAddItem = (values) => {
     console.log(values);
-    handleAddItemSubmit(values);
+    handleAddItem(values);
   };
 
-  const handleAddItemSubmit = (item) => {
-    addNewItems(item)
-      .then((newItem) => {
-        console.log("clothingItems then update", clothingItems);
-        setClothingItems([newItem, ...clothingItems]);
-        closeActiveModal();
-      })
+  function handleSubmit(request) {
+    // start loading
+    setIsLoading(true);
+    request()
+      // we need to close only in `then`
+      .then(closeActiveModal)
+      // we need to catch possible errors
+      // console.error is used to handle errors if you don’t have any other ways for that
       .catch((error) => {
         console.error("Clothes failed to be added! What to wear?", error);
       })
-      .finally(() => {
-        setIsLoading(true);
+      // and in finally we need to stop loading
+      .finally(() => setIsLoading(false));
+  }
+
+  const handleAddItem = (item) => {
+    // here we create a function that returns a promise
+    const makeRequest = () => {
+      // `return` lets us use a promise chain `then, catch, finally`
+      return addNewItems(item).then((item) => {
+        setClothingItems([item, ...clothingItems]);
       });
+    };
+    // here we call handleSubmit passing the request
+    handleSubmit(makeRequest);
   };
 
   const handleConfirmDelete = () => {
+    setIsLoading(true);
     if (selectedCard) {
       deleteItems(selectedCard._id)
         .then(() => {
@@ -106,21 +119,10 @@ function App() {
           );
         })
         .finally(() => {
-          setIsLoading(true);
+          setIsLoading(false);
         });
     }
   };
-
-  // const handleClothingItems = () => {
-  //   setClothingItems("");
-  // };
-
-  // const api = new APi({
-  //   baseUrl: "http://localhost:3001",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // });
 
   //use effect for weather api
   useEffect(() => {
@@ -155,8 +157,7 @@ function App() {
 
     const handleOverlay = (event) => {
       if (event.target.classList.contains("modal_opened")) {
-        const currentClickModal = event.target;
-        closeActiveModal(currentClickModal);
+        closeActiveModal();
       }
     };
 
@@ -210,7 +211,7 @@ function App() {
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "add-garment"}
             onAddItem={onAddItem}
-            handleAddItemSubmit={handleAddItemSubmit}
+            handleAddItem={handleAddItem}
           />
         )}
         {activeModal === "preview" && (
@@ -223,17 +224,10 @@ function App() {
         )}
 
         <RemoveModal
-          //activeModal={activeModal}
-          onClose={closeActiveModal /*closeRemoveModal*/}
+          onClose={closeActiveModal}
           onConfirm={handleConfirmDelete}
           isOpen={activeModal === "remove-item"}
         />
-
-        {/* <ItemModal
-          selectedCard={selectedCard}
-          onClose={closeActiveModal}
-          isOpen={activeModal === "preview"}
-        /> */}
       </CurrentTemperatureUnitContext.Provider>
     </div>
   );

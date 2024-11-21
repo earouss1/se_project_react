@@ -1,6 +1,6 @@
 import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import UseForm from "../../utils/UseForm";
+import useForm from "../../hooks/UseForm";
 
 const AddItemModal = ({
   onAddItem,
@@ -15,12 +15,11 @@ const AddItemModal = ({
     weather: "",
   };
 
-  const { values, handleChange, setValues } = UseForm({ defaultValues });
+  const { values, handleChange, setValues } = useForm(defaultValues);
   console.log({ values, handleChange, setValues });
 
   const handleAddItemSubmit = (event) => {
     event.preventDefault();
-    setValues(values);
     onAddItem(values);
   };
 
@@ -44,7 +43,7 @@ const AddItemModal = ({
           id="name"
           placeholder="Name"
           value={values.name}
-          onChange={/*handleChangeName*/ handleChange}
+          onChange={handleChange}
         />
       </label>
       <label htmlFor="imageUrl" className="modal__label">
@@ -58,7 +57,7 @@ const AddItemModal = ({
           minLength="1"
           maxLength="2000"
           value={values.imageUrl}
-          onChange={/*handleChangeImageUrl*/ handleChange}
+          onChange={handleChange}
         />
       </label>
       <fieldset className="modal__fieldset">
@@ -73,7 +72,7 @@ const AddItemModal = ({
             id="hot"
             className="modal__input-radio"
             value="hot"
-            onChange={/*handleWeatherTypeChange*/ handleChange}
+            onChange={handleChange}
           />
           Hot
         </label>
@@ -84,7 +83,7 @@ const AddItemModal = ({
             id="warm"
             className="modal__input-radio"
             value="warm"
-            onChange={/*handleWeatherTypeChange*/ handleChange}
+            onChange={handleChange}
           />
           Warm
         </label>
@@ -98,7 +97,7 @@ const AddItemModal = ({
             id="cold"
             className="modal__input-radio"
             value="cold"
-            onChange={/*handleWeatherTypeChange*/ handleChange}
+            onChange={handleChange}
           />
           Cold
         </label>
