@@ -1,10 +1,6 @@
 import { baseUrl } from "./APi";
 import { handleResponse } from "./APi";
 
-const handleRequest = (url, options) => {
-  return fetch(url, options).then(handleResponse);
-};
-
 function handleToken(token) {
   return fetch(`${baseUrl}/users/me/`, {
     method: "GET",
