@@ -1,6 +1,6 @@
 import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import useForm from "../../hooks/UseForm";
+import useForm from "../../hooks/useForm";
 
 const AddItemModal = ({
   onAddItem,
@@ -36,7 +36,7 @@ const AddItemModal = ({
         Name{" "}
         <input
           name="name"
-          minLength="1"
+          minLength="3"
           maxLength="30"
           type="text"
           className="modal__input"

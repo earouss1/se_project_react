@@ -43,48 +43,36 @@ function deleteItems(_id) {
   return handleRequest(url, options);
 }
 
-export { getItems, deleteItems, addNewItems };
+function likeItems(id, token) {
+  const url = `${baseUrl}/items/${id}/likes`;
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  };
+  return handleRequest(url, options);
+}
 
-// export default class APi {
-//   constructor({ baseUrl, headers }) {
-//     this._baseUrl = baseUrl;
-//     this._headers = headers;
-//   }
+function dislikeItems(id, token) {
+  const url = `${baseUrl}/items/${id}/likes`;
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  };
+  return handleRequest(url, options);
+}
 
-//   _checkResponse(res) {
-//     if (res.ok) {
-//       return res.json();
-//     }
-//     return Promise.reject(`Error: ${res.status}`);
-//   }
-
-//   _request(url, options) {
-//     return fetch(url, options).then(this._checkResponse);
-//   }
-
-//   getItems() {
-//     const url = `${this._baseUrl}/items`;
-//     const options = { headers: this._headers };
-//     return this._request(url, options);
-//   }
-
-//   addNewItems({ name, imageUrl, weather }) {
-//     const url = `${this._baseUrl}/items`;
-//     const options = {
-//       method: "POST",
-//       headers: this._headers,
-//       body: JSON.stringify({
-//         name,
-//         imageUrl,
-//         weather,
-//       }),
-//     };
-//     return this._request(url, options);
-//   }
-
-//   deleteItems(itemId) {
-//     const url = `${this._baseUrl}/items/${itemId}`;
-//     const options = { method: "DELETE", headers: this._headers };
-//     return this._request(url, options);
-//   }
-// }
+export {
+  getItems,
+  deleteItems,
+  addNewItems,
+  baseUrl,
+  dislikeItems,
+  likeItems,
+  handleResponse,
+};
