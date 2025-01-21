@@ -8,7 +8,7 @@ function handleToken(token) {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  });
+  }).then(handleResponse);
 }
 
 function signIn({ email, password }) {

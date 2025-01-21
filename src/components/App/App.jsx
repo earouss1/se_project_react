@@ -194,8 +194,9 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
+          setCurrentUser(data.user);
           setIsLoggedIn(true);
-          setActiveModal(null);
+          closeActiveModal();
         }
       })
       .catch((error) => {
@@ -226,6 +227,7 @@ function App() {
       .then((res) => {
         if (res.data) {
           setActiveModal(true);
+          closeActiveModal();
         }
       })
       .catch((error) => {

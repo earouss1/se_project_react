@@ -4,8 +4,6 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import useForm from "../../hooks/useForm";
 
 const EditProfileModal = ({ isOpen, onClose, isLoading }) => {
-  const currentUser = useContext(CurrentUserContext).user;
-
   const defaultValues = {
     name: "",
     avatar: "",
@@ -18,6 +16,8 @@ const EditProfileModal = ({ isOpen, onClose, isLoading }) => {
     event.preventDefault();
     onEditProfileClick(values);
   };
+
+  const currentUser = useContext(CurrentUserContext).user;
 
   useEffect(() => {
     if (currentUser && currentUser.values.name) {
