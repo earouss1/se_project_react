@@ -17,19 +17,19 @@ const EditProfileModal = ({ isOpen, onClose, isLoading }) => {
     onEditProfileClick(values);
   };
 
-  const currentUser = useContext(CurrentUserContext).user;
+  const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
-    if (currentUser && currentUser.values.name) {
-      setValues(currentUser.values.name);
+    if (currentUser && currentUser.name) {
+      setValues(currentUser.name);
     } else {
       setValues("");
     }
   }, [currentUser]);
 
   useEffect(() => {
-    if (currentUser && currentUser.values.avatar) {
-      setValues(currentUser.values.avatar);
+    if (currentUser && currentUser.avatar) {
+      setValues(currentUser.avatar);
     } else {
       setValues("");
     }
