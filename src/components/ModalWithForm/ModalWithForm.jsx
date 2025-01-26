@@ -20,11 +20,11 @@ function ModalWithForm({
         </button>
         <form onSubmit={onSubmit} className="modal__form">
           {children}
-          <div className="modal__submit_button">
-            <button type="submit" className="modal__submit-button">
+          <div className="modal__submit-buttons">
+            <button type="submit" className="modal__submit-buttons_first">
               {buttonText}
             </button>
-            <button type="button" className="modal__submit-button">
+            <button type="button" className="modal__submit-buttons_second">
               {secondButtonText}
             </button>
           </div>

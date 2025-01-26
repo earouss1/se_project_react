@@ -16,7 +16,6 @@ const AddItemModal = ({
   };
 
   const { values, handleChange, setValues } = useForm(defaultValues);
-  console.log({ values, handleChange, setValues });
 
   const handleAddItemSubmit = (event) => {
     event.preventDefault();

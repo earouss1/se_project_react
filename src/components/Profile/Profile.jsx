@@ -7,7 +7,7 @@ function Profile({
   onCardClick,
   clothingItems,
   handleAddClick,
-  isSignedOut,
+  handleSignOut,
   isLoggedIn,
   handleEditClick,
   onCardLike,
@@ -15,7 +15,10 @@ function Profile({
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar isSignedOut={isSignedOut} handleEditClick={handleEditClick} />
+        <SideBar
+          handleSignOut={handleSignOut}
+          handleEditClick={handleEditClick}
+        />
       </section>
       <section className="profile__clotching_items">
         <ClothesSection

@@ -44,3 +44,9 @@
   height: 15px;
   width: 18px;
 }
+
+.card__like_active {
+  height: 15px;
+  width: 18px;
+  background-image: url(../../images/State=Liked.png);
+}

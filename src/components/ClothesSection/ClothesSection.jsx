@@ -14,9 +14,13 @@ function ClothesSection({
 }) {
   const currentUser = useContext(CurrentUserContex);
   const userItems = clothingItems.filter(
-    (item) => item.owner === currentUser?.user?._id
+    (item) => item.owner === currentUser?._id
   );
-  console.log("User items: ", userItems);
+  const clotchessectionClassName = `clothessection__clothes_list ${
+    userItems?.length > 0
+      ? "clothessection__clothes_list_visible"
+      : "clothessection__clothes_list_hidden"
+  }`;
 
   return (
     <div className="clothessection">
@@ -27,7 +31,7 @@ function ClothesSection({
         </button>
       </div>
       <div className="clothessection__clothes">
-        <ul className="clothessection__clothes_list">
+        <ul className={clotchessectionClassName}>
           {userItems.map((item) => {
             return (
               <ItemCard

@@ -53,7 +53,6 @@ const RegisterModal = ({
   };
 
   const { values, handleChange, setValues } = useForm(defaultValues);
-  console.log({ values, handleChange, setValues });
 
   const handleSignUpSubmit = (event) => {
     event.preventDefault();
@@ -64,7 +63,7 @@ const RegisterModal = ({
     <ModalWithForm
       title={"Sign Up"}
       buttonText={isLoading ? "Register..." : "Sign Up"}
-      secondButtonText={isLoading ? "Login..." : "or Login"}
+      secondButtonText={"or Login"}
       onSubmit={handleSignUpSubmit}
       isOpen={isOpen}
       onClose={onClose}

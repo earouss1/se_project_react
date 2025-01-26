@@ -4,7 +4,6 @@ import "./RemoveModal.css";
 
 function RemoveModal({ isOpen, onClose, onConfirm, isLoading }) {
   const confirmDelete = () => {
-    console.log("Delete Confirmed");
     onConfirm();
   };
 

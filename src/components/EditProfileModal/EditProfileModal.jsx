@@ -1,37 +1,35 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CurrentUserContext from "../../Contexts/CurrentUserContext";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import useForm from "../../hooks/useForm";
 
-const EditProfileModal = ({ isOpen, onClose, isLoading }) => {
-  const defaultValues = {
-    name: "",
-    avatar: "",
-  };
-
-  const { values, handleChange, setValues } = useForm(defaultValues);
-  console.log({ values, handleChange, setValues });
+const EditProfileModal = ({
+  isOpen,
+  onClose,
+  isLoading,
+  onEditProfileClick,
+}) => {
+  const [name, setName] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   const handleEditProfileSubmit = (event) => {
     event.preventDefault();
-    onEditProfileClick(values);
+    onEditProfileClick({ name, avatar });
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleAvatarChange = (event) => {
+    setAvatar(event.target.value);
   };
 
   const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
-    if (currentUser && currentUser.name) {
-      setValues(currentUser.name);
-    } else {
-      setValues("");
-    }
-  }, [currentUser]);
-
-  useEffect(() => {
-    if (currentUser && currentUser.avatar) {
-      setValues(currentUser.avatar);
-    } else {
-      setValues("");
+    if (currentUser) {
+      setName(currentUser.name || "");
+      setAvatar(currentUser.avatar || "");
     }
   }, [currentUser]);
 
@@ -52,8 +50,8 @@ const EditProfileModal = ({ isOpen, onClose, isLoading }) => {
           name="editName"
           placeholder="Name"
           required
-          onChange={handleChange}
-          value={values.name}
+          onChange={handleNameChange}
+          value={name}
         />
       </label>
 
@@ -65,8 +63,8 @@ const EditProfileModal = ({ isOpen, onClose, isLoading }) => {
           id="eidtAvatarUrl"
           placeholder="Avatar Url"
           required
-          onChange={handleChange}
-          value={values.avatar}
+          onChange={handleAvatarChange}
+          value={avatar}
         />
       </label>
     </ModalWithForm>

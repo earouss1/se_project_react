@@ -2,7 +2,7 @@ import { baseUrl } from "./APi";
 import { handleResponse } from "./APi";
 
 function handleToken(token) {
-  return fetch(`${baseUrl}/users/me/`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -45,7 +45,7 @@ function signUp({ name, avatar, email, password }) {
 }
 
 function getUserInfo(token) {
-  return fetch(`${baseUrl}/users/me/`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -55,7 +55,7 @@ function getUserInfo(token) {
 }
 
 function editUserInfo({ name, avatar }, token) {
-  return fetch(`${baseUrl}/users/me/`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

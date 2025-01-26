@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import ProtectedRoutes from "../ProtectedRoutes/ProtectedRoutes";
 import "./App.css";
 // import main elements
 import Header from "../Header/Header";
@@ -14,7 +15,13 @@ import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 // import API and weatherUpdate
 //import APi from "../../utils/APi";
-import { getItems, deleteItems, addNewItems } from "../../utils/APi";
+import {
+  getItems,
+  deleteItems,
+  addNewItems,
+  likeItems,
+  dislikeItems,
+} from "../../utils/APi";
 import { weatherUpdate } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
 import { filterWeatherData } from "../../utils/weatherApi";
@@ -89,6 +96,7 @@ function App() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     setCurrentUser(null);
+    navigate("/");
   };
 
   const handleToggleSwitchChange = () => {
@@ -97,7 +105,6 @@ function App() {
   };
 
   const onAddItem = (values) => {
-    console.log(values);
     handleAddItem(values);
   };
 
@@ -112,6 +119,8 @@ function App() {
   const onEditProfileClick = (values) => {
     handleEdit(values);
   };
+
+  const navigate = useNavigate();
 
   function handleSubmit(request) {
     // start loading
@@ -129,18 +138,17 @@ function App() {
   }
 
   function handleCardLike({ id, isLiked }) {
+    console.log("App.jsx id", id);
     const token = localStorage.getItem("jwt");
-    !isLiked
-      ? api
-          .likeItems(id, token)
+    return !isLiked
+      ? likeItems(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
           .catch((err) => console.log(err))
-      : api
-          .dislikeItems(id, token)
+      : dislikeItems(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
@@ -150,10 +158,12 @@ function App() {
   }
 
   const handleAddItem = (item) => {
+    const token = localStorage.getItem("jwt");
     // here we create a function that returns a promise
     const makeRequest = () => {
       // `return` lets us use a promise chain `then, catch, finally`
-      return addNewItems(item).then((item) => {
+      return addNewItems(item, token).then((item) => {
+        console.log(item, clothingItems);
         setClothingItems([item, ...clothingItems]);
       });
     };
@@ -164,7 +174,7 @@ function App() {
   const handleConfirmDelete = () => {
     setIsLoading(true);
     if (selectedCard) {
-      deleteItems(selectedCard._id)
+      deleteItems(selectedCard._id, localStorage.getItem("jwt"))
         .then(() => {
           setClothingItems((previousItems) => {
             return previousItems.filter((item) => {
@@ -194,9 +204,13 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
-          setCurrentUser(data.user);
+          handleToken(res.token).then((data) => {
+            setCurrentUser(data);
+          });
+
           setIsLoggedIn(true);
           closeActiveModal();
+          navigate("/profile");
         }
       })
       .catch((error) => {
@@ -223,12 +237,13 @@ function App() {
 
   function handleEdit(data) {
     setIsLoading(true);
-    editUserInfo(data)
-      .then((res) => {
-        if (res.data) {
-          setActiveModal(true);
-          closeActiveModal();
-        }
+    editUserInfo(data, localStorage.getItem("jwt"))
+      .then((data) => {
+        //set your user text to the data.name
+        setCurrentUser({ name: data.name, avatar: data.avatar });
+        setIsLoggedIn(true);
+        setActiveModal(true);
+        closeActiveModal();
       })
       .catch((error) => {
         console.error("Registration process failed, try again", error);
@@ -241,30 +256,18 @@ function App() {
   //use effect for resgistration
   useEffect(() => {
     const token = localStorage.getItem("jwt");
-    if (token) {
-      getUserInfo(token)
-        .then((data) => {
-          setCurrentUser(data);
-          setIsLoggedIn(true);
-        })
-        .catch((error) => {
-          console.error("Who are you?", error);
-        });
+    if (!token) {
+      return;
     }
-  }, []);
-
-  useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      handleToken(token)
-        .then((data) => {
-          setCurrentUser(data);
-          setIsLoggedIn(true);
-        })
-        .catch((error) => {
-          console.error("Who are you?", error);
-        });
-    }
+    getUserInfo(token)
+      .then((data) => {
+        setCurrentUser(data);
+        setIsLoggedIn(true);
+        navigate("/profile");
+      })
+      .catch((error) => {
+        console.error("Who are you?", error);
+      });
   }, []);
 
   //use effect for weather api
@@ -282,7 +285,6 @@ function App() {
     getItems()
       .then((data) => {
         setClothingItems(data);
-        console.log(data);
       })
       .catch((error) => {
         console.error("Clothes are missing! What to wear?", error);
@@ -315,7 +317,6 @@ function App() {
   }, [activeModal]);
 
   //console.log currentTemperatureUnit to have it in the app also
-  console.log(currentTemperatureUnit);
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
@@ -329,6 +330,7 @@ function App() {
               handleLoginClick={handleLoginClick}
               handleSignUpClick={handleSignUpClick}
               handleSignOut={handleSignOut}
+              isLoggedIn={isLoggedIn}
             />
             <Routes>
               <Route
@@ -339,28 +341,28 @@ function App() {
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     onCardLike={handleCardLike}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
-              ></Route>
+              />
               <Route
                 path="/profile"
                 element={
-                  isLoggedIn ? (
+                  <ProtectedRoutes isLoggedIn={isLoggedIn}>
                     <Profile
                       handleEditClick={handleEditClick}
                       onConfirm={handleConfirmDelete}
                       onCardClick={handleCardClick}
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
+                      isLoggedIn={isLoggedIn}
                       onCardLike={handleCardLike}
                       handleCardLike={handleCardLike}
                       handleSignOut={handleSignOut}
                     />
-                  ) : (
-                    <Navigate to="/" />
-                  )
+                  </ProtectedRoutes>
                 }
-              ></Route>
+              />
             </Routes>
             <Footer />
           </div>

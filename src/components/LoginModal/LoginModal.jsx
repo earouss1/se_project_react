@@ -16,7 +16,6 @@ const LoginModal = ({
   };
 
   const { values, handleChange, setValues } = useForm(defaultValues);
-  console.log({ values, handleChange, setValues });
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
@@ -27,7 +26,7 @@ const LoginModal = ({
     <ModalWithForm
       title={"Log In"}
       buttonText={isLoading ? "Login..." : "Login"}
-      secondButtonText={isLoading ? "Register..." : "or Sign Up"}
+      secondButtonText={"or Sign Up"}
       onSubmit={handleLoginSubmit}
       isOpen={isOpen}
       activeModal={activeModal}

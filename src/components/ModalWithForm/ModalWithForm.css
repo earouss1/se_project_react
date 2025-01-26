@@ -109,7 +109,7 @@
   font-family: "Cabinet Grotesk";
 }
 
-.modal__submit-button {
+.modal__submit-buttons_first {
   font-family: "Cabinet Grotesk";
   font-weight: 700;
   color: #fff;
@@ -120,11 +120,27 @@
   width: 124px;
 }
 
-.modal__submit-button:hover {
+.modal__submit-buttons:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.modal__submit-button_disabled {
+.modal__submit-buttons_disabled {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal__submit-buttons_second {
+  background-color: none;
+  color: rgba(0, 0, 0, 0.3);
+  border: none;
+  font-family: "Cabinet Grotesk";
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+.modal__submit-buttons {
+  display: flex;
+  /*margin: auto;
+  padding: auto;
+  width: 100%;*/
 }

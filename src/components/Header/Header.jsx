@@ -19,7 +19,7 @@ function Header({
   });
 
   const currentUser = useContext(CurrentUserContext);
-
+  console.log(currentUser);
   return (
     <header className="header">
       <Link to="/">
@@ -28,6 +28,7 @@ function Header({
       <p className="header__date-and-loc">
         {currentDate}, {weatherCardData.city}
       </p>
+
       {isLoggedIn ? (
         <div className="header__far-right">
           <ToggleSwitch />
@@ -40,19 +41,17 @@ function Header({
           </button>
           <Link to="/profile" className="header__link">
             <div className="header__user-container">
-              <p className="header__username">{currentUser.user.name}</p>
-              {!currentUser.user.avatar ? (
+              <p className="header__username">{currentUser?.name}</p>
+              {currentUser?.avatar ? (
                 <img
-                  src={avatar}
-                  alt="User Avatar"
+                  src={currentUser.avatar}
+                  alt={currentUser.name}
                   className="header__avatar"
                 />
               ) : (
-                <img
-                  src={currentUser.user.avatar}
-                  alt="Image Avatar"
-                  className="header__avatar"
-                />
+                <div className="header__placeholder-avatar">
+                  {currentUser?.name?.charAt(0).toUpperCase()}
+                </div>
               )}
             </div>
           </Link>
@@ -61,14 +60,14 @@ function Header({
         <div className="header__far-right">
           <ToggleSwitch />
           <button
-            className="header__button"
+            className="header__button  header__button_signup"
             onClick={handleSignUpClick}
             type="button"
           >
             Sign Up
           </button>
           <button
-            className="header__button"
+            className="header__button header__button_login"
             onClick={handleLoginClick}
             type="button"
           >

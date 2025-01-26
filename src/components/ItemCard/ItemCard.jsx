@@ -5,17 +5,15 @@ import like from "../../images/likebtn.png";
 
 function ItemCard({ item, onCardClick, isLoggedIn, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
-  const [isLiked, setIsLiked] = useState(
-    item.likes.some((id) => id === currentUser?.user?._id)
-  );
+  const isLiked = item.likes.some((id) => id === currentUser?._id);
 
   const handleCardPreview = () => {
     onCardClick(item);
   };
 
   const handleLike = () => {
-    onCardLike({ id: item._id, isLiked: isLiked });
-    setIsLiked(!isLiked);
+    onCardLike({ id: item._id, isLiked, user: currentUser });
+    // setIsLiked(!isLiked);
   };
 
   const cardLikeButtonClassName = isLiked
@@ -40,7 +38,7 @@ function ItemCard({ item, onCardClick, isLoggedIn, onCardLike }) {
             />
           </button>
         ) : (
-          <></>
+          ""
         )}
       </div>
       <img
