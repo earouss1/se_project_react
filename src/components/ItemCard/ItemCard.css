@@ -48,5 +48,6 @@
 .card__like_active {
   height: 15px;
   width: 18px;
-  background-image: url(../../images/State=Liked.png);
+  background-image: url(../../images/like-vector-active.svg);
+  /*background-position: fit;*/
 }

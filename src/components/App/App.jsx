@@ -144,14 +144,14 @@ function App() {
       ? likeItems(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
+              cards.map((item) => (item._id === id ? updatedCard.data : item))
             );
           })
           .catch((err) => console.log(err))
       : dislikeItems(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
+              cards.map((item) => (item._id === id ? updatedCard.data : item))
             );
           })
           .catch((err) => console.log(err));
@@ -240,8 +240,7 @@ function App() {
     editUserInfo(data, localStorage.getItem("jwt"))
       .then((data) => {
         //set your user text to the data.name
-        setCurrentUser({ name: data.name, avatar: data.avatar });
-        setIsLoggedIn(true);
+        setCurrentUser(data);
         setActiveModal(true);
         closeActiveModal();
       })

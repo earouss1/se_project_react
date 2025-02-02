@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./SideBar.css";
-import avatar from "../../images/avatar.png";
+//import avatar from "../../images/avatar.png";
 import CurrentUserContext from "../../Contexts/CurrentUserContext";
 
 function SideBar({ handleEditClick, handleSignOut }) {
