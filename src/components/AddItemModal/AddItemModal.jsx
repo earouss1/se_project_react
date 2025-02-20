@@ -15,11 +15,15 @@ const AddItemModal = ({
     weather: "",
   };
 
-  const { values, handleChange, setValues } = useForm(defaultValues);
+  const { values, handleChange, errors, isValid, resetForm } =
+    useForm(defaultValues);
 
   const handleAddItemSubmit = (event) => {
     event.preventDefault();
-    onAddItem(values);
+    if (isValid) {
+      onAddItem(values);
+    }
+    resetForm(defaultValues);
   };
 
   return (
@@ -30,6 +34,7 @@ const AddItemModal = ({
       activeModal={activeModal}
       onClose={closeActiveModal}
       onSubmit={handleAddItemSubmit}
+      isValid={isValid}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
@@ -38,26 +43,35 @@ const AddItemModal = ({
           minLength="3"
           maxLength="30"
           type="text"
-          className="modal__input"
+          className={`modal__input ${
+            errors.name ? "modal__input_type_error" : ""
+          }`}
           id="name"
           placeholder="Name"
           value={values.name}
           onChange={handleChange}
         />
+        {errors.name && <span className="modal__errors">{errors.name}</span>}
       </label>
       <label htmlFor="imageUrl" className="modal__label">
         Image{" "}
         <input
           type="url"
-          className="modal__input"
+          className={`modal__input ${
+            errors.imageUrl ? "modal__input_type_error" : ""
+          }`}
           id="imageUrl"
           placeholder="Image Url"
           name="imageUrl"
-          minLength="1"
+          minLength="3"
           maxLength="2000"
           value={values.imageUrl}
           onChange={handleChange}
+          required
         />
+        {errors.imageUrl && (
+          <span className="modal__errors">{errors.imageUrl}</span>
+        )}
       </label>
       <fieldset className="modal__fieldset">
         <legend className="modal__legend">Select the weather type:</legend>

@@ -43,11 +43,18 @@
 .card__like {
   height: 15px;
   width: 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card__like:hover {
+  cursor: pointer;
 }
 
 .card__like_active {
-  height: 15px;
-  width: 18px;
   background-image: url(../../images/like-vector-active.svg);
-  /*background-position: fit;*/
 }

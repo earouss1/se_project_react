@@ -1,8 +1,13 @@
 .sidebar {
+  margin: auto;
+  padding: 0;
+}
+
+.sidebar__user {
   display: flex;
   width: 100%;
   gap: 16px;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 
@@ -11,7 +16,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 25px;
-  margin-right: auto;
+  /* margin-right: auto; */
   margin: 0;
 }
 
@@ -34,8 +39,16 @@
   margin-bottom: 0;
 }
 
+.sidebar__buttons_change-profile:hover {
+  cursor: pointer;
+}
+
 .sidebar__buttons_signout {
   font-family: "Cabinet Grotesk";
   font-size: 20;
   margin-bottom: 10;
+}
+
+.sidebar__buttons_signout:hover {
+  cursor: pointer;
 }

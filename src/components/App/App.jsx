@@ -391,7 +391,7 @@ function App() {
 
           <LoginModal
             isOpen={activeModal === "login"}
-            onLoginClick={onLoginClick}
+            onLoginClick={handleLogin}
             onClose={closeActiveModal}
             isLoading={isLoading}
             handleLogin={handleLogin}

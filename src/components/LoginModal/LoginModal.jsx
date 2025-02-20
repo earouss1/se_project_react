@@ -15,11 +15,19 @@ const LoginModal = ({
     password: "",
   };
 
-  const { values, handleChange, setValues } = useForm(defaultValues);
+  const { values, handleChange, errors, isValid, resetForm } =
+    useForm(defaultValues);
+
+  // console.log("values =>", values);
+  // console.log("errors =>", errors);
+  // console.log("isValid =>", isValid);
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
-    onLoginClick(values);
+    if (isValid) {
+      onLoginClick(values);
+    }
+    resetForm(defaultValues);
   };
 
   return (
@@ -31,11 +39,14 @@ const LoginModal = ({
       isOpen={isOpen}
       activeModal={activeModal}
       onClose={onClose}
+      isValid={isValid}
     >
       <label className="modal__label" htmlFor="email">
         Email{" "}
         <input
-          className="modal__input"
+          className={`modal__input ${
+            errors.email ? "modal__input_type_error" : ""
+          }`}
           type="email"
           id="user-email"
           name="email"
@@ -44,19 +55,30 @@ const LoginModal = ({
           onChange={handleChange}
           value={values.email}
         />
+        {errors.email && <span className="modal__errors">{errors.email}</span>}
       </label>
       <label className="modal__label" htmlFor="password">
         Password{" "}
+        {/* {errors.password && (
+          <span className="modal__errors">{"errors.password"}</span>
+        )} */}
         <input
-          className="modal__input"
+          className={`modal__input ${
+            errors.password ? "modal__input_type_error" : ""
+          }`}
           type="password"
           id="user-password"
           name="password"
           placeholder="Password"
+          minLength={7}
+          maxLength={30}
           required
           onChange={handleChange}
           value={values.password}
         />
+        {errors.password && (
+          <span className="modal__errors">{errors.password}</span>
+        )}
       </label>
     </ModalWithForm>
   );

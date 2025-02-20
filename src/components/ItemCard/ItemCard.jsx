@@ -18,7 +18,7 @@ function ItemCard({ item, onCardClick, isLoggedIn, onCardLike }) {
 
   const cardLikeButtonClassName = isLiked
     ? "card__like card__like_active"
-    : "card_like";
+    : "card__like";
 
   return (
     <li className="card">

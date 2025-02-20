@@ -23,7 +23,7 @@
   max-width: 496px;
   width: 100%;
   border-radius: 20px;
-  min-height: 330px;
+  /* min-height: 330px; */
 }
 
 .modal__title {
@@ -95,6 +95,10 @@
   padding-top: 12px;
 }
 
+.modal__input_type_error {
+  border-bottom: 1px solid rgba(250, 0, 0, 1);
+}
+
 .modal__fieldset {
   display: flex;
   flex-direction: column;
@@ -117,30 +121,34 @@
   padding: 8px 16px;
   border: none;
   background-color: #000;
-  width: 124px;
+  width: 86px;
 }
 
 .modal__submit-buttons:hover {
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.6);
+  /* background-color: rgba(0, 0, 0, 0.6); */
 }
 
-.modal__submit-buttons_disabled {
+.modal__submit-buttons_first_disabled {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
 .modal__submit-buttons_second {
-  background-color: none;
+  background-color: transparent;
   color: rgba(0, 0, 0, 0.3);
   border: none;
   font-family: "Cabinet Grotesk";
   font-weight: 700;
   margin-left: 5px;
+  width: 80px;
 }
 
 .modal__submit-buttons {
   display: flex;
-  /*margin: auto;
-  padding: auto;
-  width: 100%;*/
+  width: auto;
+}
+
+.modal__errors {
+  color: red;
+  border-bottom: 1px solid rgba(250, 0, 0, 1);
 }

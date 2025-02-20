@@ -52,11 +52,15 @@ const RegisterModal = ({
     password: "",
   };
 
-  const { values, handleChange, setValues } = useForm(defaultValues);
+  const { values, handleChange, errors, isValid, resetForm } =
+    useForm(defaultValues);
 
   const handleSignUpSubmit = (event) => {
     event.preventDefault();
-    onSignUpClick(values);
+    if (isValid) {
+      onSignUpClick(values);
+    }
+    resetForm(defaultValues);
   };
 
   return (
@@ -68,11 +72,14 @@ const RegisterModal = ({
       isOpen={isOpen}
       onClose={onClose}
       active={activeModal}
+      isValid={isValid}
     >
       <label className="modal__label" htmlFor="email">
         Email*{" "}
         <input
-          className="modal__input"
+          className={`modal__input ${
+            errors.email ? "modal__input_type_error" : ""
+          }`}
           type="email"
           id="user-email"
           name="email"
@@ -81,37 +88,52 @@ const RegisterModal = ({
           onChange={handleChange}
           value={values.email}
         />
+        {errors.email && <span className="modal__errors">{errors.email}</span>}
       </label>
       <label className="modal__label" htmlFor="password">
         Password*{" "}
         <input
-          className="modal__input"
+          className={`modal__input ${
+            errors.password ? "modal__input_type_error" : ""
+          }`}
           type="password"
           id="user-password"
           name="password"
           placeholder="Password"
+          maxLength={30}
+          minLength={7}
           required
           onChange={handleChange}
           value={values.password}
         />
+        {errors.password && (
+          <span className="modal__errors">{errors.password}</span>
+        )}
       </label>
       <label className="modal__label" htmlFor="name">
         Name*{" "}
         <input
-          className="modal__input"
+          className={`modal__input ${
+            errors.name ? "modal__input_type_error" : ""
+          }`}
           type="name"
           id="user-name"
           name="name"
           placeholder="Name"
           required
+          maxLength={30}
+          minLength={2}
           onChange={handleChange}
           value={values.name}
         />
+        {errors.name && <span className="modal__errors">{errors.name}</span>}
       </label>
       <label className="modal__label" htmlFor="imageUrl">
         Avatar URL*{" "}
         <input
-          className="modal__input"
+          className={`modal__input ${
+            errors.avatar ? "modal__input_type_error" : ""
+          }`}
           type="url"
           id="avatar-url"
           name="avatar"
@@ -120,6 +142,9 @@ const RegisterModal = ({
           onChange={handleChange}
           value={values.avatar}
         />
+        {errors.avatar && (
+          <span className="modal__errors">{errors.avatar}</span>
+        )}
       </label>
     </ModalWithForm>
   );
