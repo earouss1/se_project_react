@@ -54,6 +54,7 @@ function getUserInfo(token) {
   }).then(handleResponse);
 }
 
+// { editavatar, editName }
 function editUserInfo({ name, avatar }, token) {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",

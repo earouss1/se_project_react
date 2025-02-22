@@ -3,7 +3,8 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import useForm from "../../hooks/useForm";
 
 const AddItemModal = ({
-  onAddItem,
+  // onAddItem,
+  handleAddItem,
   closeActiveModal,
   activeModal,
   isOpen,
@@ -21,7 +22,8 @@ const AddItemModal = ({
   const handleAddItemSubmit = (event) => {
     event.preventDefault();
     if (isValid) {
-      onAddItem(values);
+      // onAddItem(values);
+      handleAddItem(values);
     }
     resetForm(defaultValues);
   };

@@ -3,12 +3,7 @@ import CurrentUserContext from "../../Contexts/CurrentUserContext";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import useForm from "../../hooks/useForm";
 
-const EditProfileModal = ({
-  isOpen,
-  onClose,
-  isLoading,
-  onEditProfileClick,
-}) => {
+const EditProfileModal = ({ isOpen, onClose, isLoading, handleEdit }) => {
   const defaultValues = {
     name: "",
     imageUrl: "",
@@ -24,8 +19,7 @@ const EditProfileModal = ({
   const handleEditProfileSubmit = (event) => {
     event.preventDefault();
     if (isValid) {
-      onEditProfileClick(values);
-      console.log(values);
+      handleEdit(values);
     }
     resetForm(defaultValues);
   };
@@ -34,8 +28,12 @@ const EditProfileModal = ({
 
   useEffect(() => {
     if (currentUser) {
-      setValues(currentUser.name || "");
-      setValues(currentUser.avatar || "");
+      setValues({
+        name: currentUser.name || "",
+        imageUrl: currentUser.avatar || "",
+      });
+      // setValues(currentUser.name || "");
+      // setValues(currentUser.avatar || "");
     }
   }, [currentUser]);
 
@@ -62,7 +60,7 @@ const EditProfileModal = ({
           maxLength={30}
           required
           onChange={handleChange}
-          value={values.name}
+          value={values.name || ""}
         />
         {errors.name && <span className="modal__errors">{errors.name}</span>}
       </label>
@@ -75,10 +73,11 @@ const EditProfileModal = ({
           }`}
           type="url"
           id="eidtAvatarUrl"
+          name="editAvatar"
           placeholder="Avatar Url"
           required
           onChange={handleChange}
-          value={values.avatar}
+          value={values.avatar || ""}
         />
         {errors.avatar && (
           <span className="modal__errors">{errors.avatar}</span>

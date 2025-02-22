@@ -92,6 +92,14 @@ function App() {
     setActiveModal("register");
   };
 
+  // let toggleModal = () => {
+  //   if (activeModal === "register") {
+  //     handleLoginClick();
+  //   } else {
+  //     handleSignUpClick();
+  //   }
+  // };
+
   const handleSignOut = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
@@ -102,22 +110,6 @@ function App() {
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
-  };
-
-  const onAddItem = (values) => {
-    handleAddItem(values);
-  };
-
-  const onLoginClick = (values) => {
-    handleLogin(values);
-  };
-
-  const onSignUpClick = (values) => {
-    handleRegister(values);
-  };
-
-  const onEditProfileClick = (values) => {
-    handleEdit(values);
   };
 
   const navigate = useNavigate();
@@ -237,7 +229,10 @@ function App() {
 
   function handleEdit(data) {
     setIsLoading(true);
-    editUserInfo(data, localStorage.getItem("jwt"))
+    editUserInfo(
+      { name: data.editName, avatar: data.editAvatar },
+      localStorage.getItem("jwt")
+    )
       .then((data) => {
         //set your user text to the data.name
         setCurrentUser(data);
@@ -370,7 +365,6 @@ function App() {
               closeActiveModal={closeActiveModal}
               isOpen={activeModal === "add-garment"}
               isLoading={isLoading}
-              onAddItem={onAddItem}
               handleAddItem={handleAddItem}
             />
           )}
@@ -391,10 +385,10 @@ function App() {
 
           <LoginModal
             isOpen={activeModal === "login"}
-            onLoginClick={handleLogin}
             onClose={closeActiveModal}
             isLoading={isLoading}
             handleLogin={handleLogin}
+            toggleModal={handleSignUpClick}
           />
 
           <RegisterModal
@@ -403,7 +397,7 @@ function App() {
             setActiveModal={setActiveModal}
             onClose={closeActiveModal}
             isLoading={isLoading}
-            onSignUpClick={onSignUpClick}
+            toggleModal={handleLoginClick}
           />
 
           <EditProfileModal
@@ -411,7 +405,6 @@ function App() {
             setActiveModal={setActiveModal}
             onClose={closeActiveModal}
             handleEdit={handleEdit}
-            onEditProfileClick={onEditProfileClick}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

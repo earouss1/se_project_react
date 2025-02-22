@@ -42,7 +42,8 @@ const RegisterModal = ({
   isLoading,
   activeModal,
   isOpen,
-  onSignUpClick,
+  handleResgister,
+  toggleModal,
   onClose,
 }) => {
   const defaultValues = {
@@ -57,8 +58,9 @@ const RegisterModal = ({
 
   const handleSignUpSubmit = (event) => {
     event.preventDefault();
+
     if (isValid) {
-      onSignUpClick(values);
+      handleResgister(values);
     }
     resetForm(defaultValues);
   };
@@ -73,6 +75,7 @@ const RegisterModal = ({
       onClose={onClose}
       active={activeModal}
       isValid={isValid}
+      toggleModal={toggleModal}
     >
       <label className="modal__label" htmlFor="email">
         Email*{" "}
@@ -86,7 +89,7 @@ const RegisterModal = ({
           placeholder="Email"
           required
           onChange={handleChange}
-          value={values.email}
+          value={values.email || ""}
         />
         {errors.email && <span className="modal__errors">{errors.email}</span>}
       </label>
@@ -104,7 +107,7 @@ const RegisterModal = ({
           minLength={7}
           required
           onChange={handleChange}
-          value={values.password}
+          value={values.password || ""}
         />
         {errors.password && (
           <span className="modal__errors">{errors.password}</span>
@@ -124,7 +127,7 @@ const RegisterModal = ({
           maxLength={30}
           minLength={2}
           onChange={handleChange}
-          value={values.name}
+          value={values.name || ""}
         />
         {errors.name && <span className="modal__errors">{errors.name}</span>}
       </label>
@@ -140,7 +143,7 @@ const RegisterModal = ({
           placeholder="Avatar Url"
           required
           onChange={handleChange}
-          value={values.avatar}
+          value={values.avatar || ""}
         />
         {errors.avatar && (
           <span className="modal__errors">{errors.avatar}</span>

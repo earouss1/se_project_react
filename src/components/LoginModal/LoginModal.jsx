@@ -7,7 +7,8 @@ const LoginModal = ({
   isLoading,
   activeModal,
   isOpen,
-  onLoginClick,
+  handleLogin,
+  toggleModal,
   onClose,
 }) => {
   const defaultValues = {
@@ -25,7 +26,8 @@ const LoginModal = ({
   const handleLoginSubmit = (event) => {
     event.preventDefault();
     if (isValid) {
-      onLoginClick(values);
+      // onLoginClick(values)
+      handleLogin(values);
     }
     resetForm(defaultValues);
   };
@@ -39,7 +41,7 @@ const LoginModal = ({
       isOpen={isOpen}
       activeModal={activeModal}
       onClose={onClose}
-      isValid={isValid}
+      toggleModal={toggleModal}
     >
       <label className="modal__label" htmlFor="email">
         Email{" "}
@@ -48,12 +50,12 @@ const LoginModal = ({
             errors.email ? "modal__input_type_error" : ""
           }`}
           type="email"
-          id="user-email"
+          id="useremail"
           name="email"
           placeholder="Email"
           required
           onChange={handleChange}
-          value={values.email}
+          value={values.email || ""}
         />
         {errors.email && <span className="modal__errors">{errors.email}</span>}
       </label>
@@ -67,14 +69,14 @@ const LoginModal = ({
             errors.password ? "modal__input_type_error" : ""
           }`}
           type="password"
-          id="user-password"
+          id="userpassword"
           name="password"
           placeholder="Password"
           minLength={7}
           maxLength={30}
           required
           onChange={handleChange}
-          value={values.password}
+          value={values.password || ""}
         />
         {errors.password && (
           <span className="modal__errors">{errors.password}</span>

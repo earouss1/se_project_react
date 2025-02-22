@@ -6,6 +6,10 @@ function ModalWithForm({
   children,
   buttonText,
   secondButtonText,
+  handleLoginClick,
+  handleSignUpClick,
+  activeModal,
+  toggleModal,
   title,
   isOpen,
   onClose,
@@ -30,11 +34,21 @@ function ModalWithForm({
             >
               {buttonText}
             </button>
-            <button type="button" className="modal__submit-buttons_second">
+            <button
+              type="button"
+              onClick={toggleModal}
+              className="modal__submit-buttons_second"
+            >
               {secondButtonText}
             </button>
           </div>
         </form>
+        {activeModal && (
+          <div>
+            {handleLoginClick}
+            <button onClick={handleSignUpClick}></button>
+          </div>
+        )}
       </div>
     </div>
   );

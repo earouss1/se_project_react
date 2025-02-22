@@ -25,6 +25,7 @@
 
 .header__add-clothes-button {
   margin: 0;
+  border: none;
 }
 
 .header__user-container {

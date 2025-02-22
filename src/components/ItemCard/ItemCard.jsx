@@ -1,7 +1,7 @@
 import "./ItemCard.css";
 import React, { useContext, useState } from "react";
 import CurrentUserContext from "../../Contexts/CurrentUserContext";
-import like from "../../images/Like-vector.svg";
+import like from "../../images/Like-default.png";
 
 function ItemCard({ item, onCardClick, isLoggedIn, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
