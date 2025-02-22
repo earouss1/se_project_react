@@ -46,6 +46,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
+  background-size: contain;
   border: none;
   padding: 0;
   margin: 0;
