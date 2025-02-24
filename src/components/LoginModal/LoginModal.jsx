@@ -16,7 +16,7 @@ const LoginModal = ({
     password: "",
   };
 
-  const { values, handleChange, errors, isValid, resetForm } =
+  const { values, handleChange, errors, isValid /*resetForm*/ } =
     useForm(defaultValues);
 
   // console.log("values =>", values);
@@ -29,7 +29,7 @@ const LoginModal = ({
       // onLoginClick(values)
       handleLogin(values);
     }
-    resetForm(defaultValues);
+    // resetForm(defaultValues);
   };
 
   return (

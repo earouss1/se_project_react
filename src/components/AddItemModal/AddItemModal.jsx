@@ -25,7 +25,7 @@ const AddItemModal = ({
       // onAddItem(values);
       handleAddItem(values);
     }
-    resetForm(defaultValues);
+    // resetForm(defaultValues);
   };
 
   return (

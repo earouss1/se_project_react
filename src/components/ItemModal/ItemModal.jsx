@@ -5,7 +5,7 @@ import CurrentUserContext from "../../Contexts/CurrentUserContext";
 import { useContext } from "react";
 
 function ItemModal({ isOpen, onClose, selectedCard, handleDeleteClick }) {
-  const DeleteItem = () => {
+  const deleteItem = () => {
     handleDeleteClick(selectedCard);
   };
 
@@ -36,7 +36,7 @@ function ItemModal({ isOpen, onClose, selectedCard, handleDeleteClick }) {
           <button
             className="modal__delete-button"
             type="submit"
-            onClick={DeleteItem}
+            onClick={deleteItem}
           >
             Delete Item
           </button>

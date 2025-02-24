@@ -53,7 +53,7 @@ const RegisterModal = ({
     password: "",
   };
 
-  const { values, handleChange, errors, isValid, resetForm } =
+  const { values, handleChange, errors, isValid /*resetForm*/ } =
     useForm(defaultValues);
 
   const handleSignUpSubmit = (event) => {
@@ -62,7 +62,7 @@ const RegisterModal = ({
     if (isValid) {
       handleResgister(values);
     }
-    resetForm(defaultValues);
+    // resetForm(defaultValues);
   };
 
   return (
