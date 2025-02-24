@@ -217,7 +217,7 @@ function App() {
     setIsLoading(true);
     signUp(data)
       .then(() => {
-        handleLogin({ email: data.email, password: data.password });
+        handleLogin({ email: data.useremail, password: data.userpassword });
       })
       .catch((error) => {
         console.error("Registration process failed, try again", error);
@@ -230,7 +230,7 @@ function App() {
   function handleEdit(data) {
     setIsLoading(true);
     editUserInfo(
-      { name: data.editName, avatar: data.editAvatar },
+      { name: data.name, avatar: data.avatar },
       localStorage.getItem("jwt")
     )
       .then((data) => {

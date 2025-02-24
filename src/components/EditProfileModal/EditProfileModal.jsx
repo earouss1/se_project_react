@@ -6,22 +6,17 @@ import useForm from "../../hooks/useForm";
 const EditProfileModal = ({ isOpen, onClose, isLoading, handleEdit }) => {
   const defaultValues = {
     name: "",
-    imageUrl: "",
+    avatar: "",
   };
 
-  const { values, handleChange, setValues, errors, isValid, resetForm } =
+  const { values, handleChange, setValues, errors, isValid } =
     useForm(defaultValues);
-
-  // console.log("values =>", values);
-  // console.log("errors =>", errors);
-  // console.log("isValid =>", isValid);
 
   const handleEditProfileSubmit = (event) => {
     event.preventDefault();
     if (isValid) {
       handleEdit(values);
     }
-    resetForm(defaultValues);
   };
 
   const currentUser = useContext(CurrentUserContext);
@@ -30,10 +25,11 @@ const EditProfileModal = ({ isOpen, onClose, isLoading, handleEdit }) => {
     if (currentUser) {
       setValues({
         name: currentUser.name || "",
-        imageUrl: currentUser.avatar || "",
+        avatar: currentUser.avatar || "",
       });
-      // setValues(currentUser.name || "");
-      // setValues(currentUser.avatar || "");
+
+      // setValues({ name: currentUser.name || ""});
+      //   setValues({ imageUrl: currentUser.avatar || "" });
     }
   }, [currentUser]);
 
@@ -46,15 +42,15 @@ const EditProfileModal = ({ isOpen, onClose, isLoading, handleEdit }) => {
       onClose={onClose}
       isValid={isValid}
     >
-      <label className="modal__label" htmlFor="edit name">
+      <label className="modal__label" htmlFor="edit-name">
         Name*{" "}
         <input
           className={`modal__input ${
             errors.name ? "modal__input_type_error" : ""
           }`}
           type="text"
-          id="username"
-          name="editName"
+          id="edit-name"
+          name="name"
           placeholder="Name"
           minLength={2}
           maxLength={30}
@@ -65,18 +61,19 @@ const EditProfileModal = ({ isOpen, onClose, isLoading, handleEdit }) => {
         {errors.name && <span className="modal__errors">{errors.name}</span>}
       </label>
 
-      <label className="modal__label" htmlFor="edit avatar">
+      <label className="modal__label" htmlFor="edit-avatar">
         Avatar*{" "}
         <input
           className={`modal__input ${
             errors.avatar ? "modal__input_type_error" : ""
           }`}
           type="url"
-          id="eidtAvatarUrl"
-          name="editAvatar"
+          id="edit-avatar"
+          name="avatar"
           placeholder="Avatar Url"
           required
           onChange={handleChange}
+          // value={values.avatar}
           value={values.avatar || ""}
         />
         {errors.avatar && (

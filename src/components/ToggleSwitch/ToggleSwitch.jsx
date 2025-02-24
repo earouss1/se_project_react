@@ -9,11 +9,12 @@ function ToggleSwitch() {
   );
 
   return (
-    <label htmlFor="" className="header__switch">
+    <label htmlFor="switch" className="header__switch">
       <input
         type="checkbox"
         className="header__switch_input"
         onChange={handleToggleSwitchChange}
+        id="switch"
       />
       <span
         className={

@@ -43,7 +43,7 @@ const LoginModal = ({
       onClose={onClose}
       toggleModal={toggleModal}
     >
-      <label className="modal__label" htmlFor="email">
+      <label className="modal__label" htmlFor="useremail">
         Email{" "}
         <input
           className={`modal__input ${
@@ -59,7 +59,7 @@ const LoginModal = ({
         />
         {errors.email && <span className="modal__errors">{errors.email}</span>}
       </label>
-      <label className="modal__label" htmlFor="password">
+      <label className="modal__label" htmlFor="userpassword">
         Password{" "}
         {/* {errors.password && (
           <span className="modal__errors">{"errors.password"}</span>

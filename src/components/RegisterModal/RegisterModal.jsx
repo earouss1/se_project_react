@@ -77,7 +77,7 @@ const RegisterModal = ({
       isValid={isValid}
       toggleModal={toggleModal}
     >
-      <label className="modal__label" htmlFor="email">
+      <label className="modal__label" htmlFor="user-email">
         Email*{" "}
         <input
           className={`modal__input ${
@@ -93,7 +93,7 @@ const RegisterModal = ({
         />
         {errors.email && <span className="modal__errors">{errors.email}</span>}
       </label>
-      <label className="modal__label" htmlFor="password">
+      <label className="modal__label" htmlFor="user-password">
         Password*{" "}
         <input
           className={`modal__input ${
@@ -113,7 +113,7 @@ const RegisterModal = ({
           <span className="modal__errors">{errors.password}</span>
         )}
       </label>
-      <label className="modal__label" htmlFor="name">
+      <label className="modal__label" htmlFor="user-name">
         Name*{" "}
         <input
           className={`modal__input ${
@@ -131,7 +131,7 @@ const RegisterModal = ({
         />
         {errors.name && <span className="modal__errors">{errors.name}</span>}
       </label>
-      <label className="modal__label" htmlFor="imageUrl">
+      <label className="modal__label" htmlFor="avatar-url">
         Avatar URL*{" "}
         <input
           className={`modal__input ${
