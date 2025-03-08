@@ -16,7 +16,7 @@ const LoginModal = ({
     password: "",
   };
 
-  const { values, handleChange, errors, isValid /*resetForm*/ } =
+  const { values, handleChange, errors, isValid, resetForm } =
     useForm(defaultValues);
 
   // console.log("values =>", values);
@@ -29,7 +29,7 @@ const LoginModal = ({
       // onLoginClick(values)
       handleLogin(values);
     }
-    // resetForm(defaultValues);
+    resetForm(defaultValues);
   };
 
   return (
@@ -56,6 +56,7 @@ const LoginModal = ({
           required
           onChange={handleChange}
           value={values.email || ""}
+          autoComplete="on"
         />
         {errors.email && <span className="modal__errors">{errors.email}</span>}
       </label>
@@ -77,6 +78,7 @@ const LoginModal = ({
           required
           onChange={handleChange}
           value={values.password || ""}
+          autoComplete="current-password"
         />
         {errors.password && (
           <span className="modal__errors">{errors.password}</span>

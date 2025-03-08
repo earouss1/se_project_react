@@ -57,6 +57,7 @@ const EditProfileModal = ({ isOpen, onClose, isLoading, handleEdit }) => {
           required
           onChange={handleChange}
           value={values.name || ""}
+          autoComplete="name"
         />
         {errors.name && <span className="modal__errors">{errors.name}</span>}
       </label>
@@ -75,6 +76,7 @@ const EditProfileModal = ({ isOpen, onClose, isLoading, handleEdit }) => {
           onChange={handleChange}
           // value={values.avatar}
           value={values.avatar || ""}
+          autoComplete="on"
         />
         {errors.avatar && (
           <span className="modal__errors">{errors.avatar}</span>

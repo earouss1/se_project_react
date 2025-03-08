@@ -53,7 +53,7 @@ const RegisterModal = ({
     password: "",
   };
 
-  const { values, handleChange, errors, isValid /*resetForm*/ } =
+  const { values, handleChange, errors, isValid, resetForm } =
     useForm(defaultValues);
 
   const handleSignUpSubmit = (event) => {
@@ -62,7 +62,7 @@ const RegisterModal = ({
     if (isValid) {
       handleResgister(values);
     }
-    // resetForm(defaultValues);
+    resetForm(defaultValues);
   };
 
   return (
@@ -90,6 +90,7 @@ const RegisterModal = ({
           required
           onChange={handleChange}
           value={values.email || ""}
+          autoComplete="on"
         />
         {errors.email && <span className="modal__errors">{errors.email}</span>}
       </label>
@@ -108,6 +109,7 @@ const RegisterModal = ({
           required
           onChange={handleChange}
           value={values.password || ""}
+          autoComplete="new-password"
         />
         {errors.password && (
           <span className="modal__errors">{errors.password}</span>
@@ -128,6 +130,7 @@ const RegisterModal = ({
           minLength={2}
           onChange={handleChange}
           value={values.name || ""}
+          autoComplete="name"
         />
         {errors.name && <span className="modal__errors">{errors.name}</span>}
       </label>
@@ -144,6 +147,7 @@ const RegisterModal = ({
           required
           onChange={handleChange}
           value={values.avatar || ""}
+          autoComplete="on"
         />
         {errors.avatar && (
           <span className="modal__errors">{errors.avatar}</span>

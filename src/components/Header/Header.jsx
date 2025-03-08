@@ -19,7 +19,6 @@ function Header({
   });
 
   const currentUser = useContext(CurrentUserContext);
-  console.log(currentUser);
   return (
     <header className="header">
       <Link to="/">

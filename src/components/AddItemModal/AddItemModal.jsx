@@ -25,7 +25,7 @@ const AddItemModal = ({
       // onAddItem(values);
       handleAddItem(values);
     }
-    // resetForm(defaultValues);
+    resetForm(defaultValues);
   };
 
   return (
@@ -52,6 +52,7 @@ const AddItemModal = ({
           placeholder="Name"
           value={values.name}
           onChange={handleChange}
+          autoComplete="name"
         />
         {errors.name && <span className="modal__errors">{errors.name}</span>}
       </label>
@@ -70,6 +71,7 @@ const AddItemModal = ({
           value={values.imageUrl}
           onChange={handleChange}
           required
+          autoComplete="on"
         />
         {errors.imageUrl && (
           <span className="modal__errors">{errors.imageUrl}</span>
