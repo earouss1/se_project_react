@@ -42,7 +42,7 @@ const RegisterModal = ({
   isLoading,
   activeModal,
   isOpen,
-  handleResgister,
+  handleRegister,
   toggleModal,
   onClose,
 }) => {
@@ -60,7 +60,7 @@ const RegisterModal = ({
     event.preventDefault();
 
     if (isValid) {
-      handleResgister(values);
+      handleRegister(values);
     }
     resetForm(defaultValues);
   };

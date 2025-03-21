@@ -1,7 +1,7 @@
 const baseUrl =
   process.env.NODE_ENV === "production"
     ? "https://api.wtwear.twilightparadox.com"
-    : "https://localhost:3001";
+    : "http://localhost:3001";
 
 const handleResponse = (res) => {
   if (res.ok) {

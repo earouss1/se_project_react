@@ -217,7 +217,12 @@ function App() {
     setIsLoading(true);
     signUp(data)
       .then(() => {
-        handleLogin({ email: data.useremail, password: data.userpassword });
+        handleLogin({
+          email: data.useremail,
+          password: data.userpassword,
+          // Name: data.name,
+          // avatar: data.avatar,
+        });
       })
       .catch((error) => {
         console.error("Registration process failed, try again", error);

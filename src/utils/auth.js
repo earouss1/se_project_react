@@ -5,7 +5,6 @@ function handleToken(token) {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
   }).then(handleResponse);
@@ -15,6 +14,7 @@ function signIn({ email, password }) {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
@@ -30,6 +30,7 @@ function signUp({ name, avatar, email, password }) {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password, name, avatar }),
