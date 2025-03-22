@@ -216,13 +216,23 @@ function App() {
   function handleRegister(data) {
     setIsLoading(true);
     signUp(data)
-      .then(() => {
-        handleLogin({
-          email: data.useremail,
-          password: data.userpassword,
-          // Name: data.name,
-          // avatar: data.avatar,
-        });
+      .then((res) => {
+        // handleLogin({
+        //   email: res.email,
+        //   password: data.userpassword,
+        //   name: res.name,
+        //   avatar: res.avatar,
+        // });
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          handleToken(res.token).then((data) => {
+            setCurrentUser(data);
+          });
+
+          setIsLoggedIn(true);
+          closeActiveModal();
+          navigate("/profile");
+        }
       })
       .catch((error) => {
         console.error("Registration process failed, try again", error);
